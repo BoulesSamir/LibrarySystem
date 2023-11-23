@@ -1,0 +1,13 @@
+F:\New folder\LibrarySystem\DataAccess\bin\Debug\netstandard2.0\DataAccess.deps.json
+F:\New folder\LibrarySystem\DataAccess\bin\Debug\netstandard2.0\DataAccess.dll
+F:\New folder\LibrarySystem\DataAccess\bin\Debug\netstandard2.0\DataAccess.pdb
+F:\New folder\LibrarySystem\DataAccess\bin\Debug\netstandard2.0\BussinessObject.dll
+F:\New folder\LibrarySystem\DataAccess\bin\Debug\netstandard2.0\BussinessObject.pdb
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.AssemblyReference.cache
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfoInputs.cache
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.AssemblyInfo.cs
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CoreCompileInputs.cache
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.csproj.CopyComplete
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.dll
+F:\New folder\LibrarySystem\DataAccess\obj\Debug\netstandard2.0\DataAccess.pdb

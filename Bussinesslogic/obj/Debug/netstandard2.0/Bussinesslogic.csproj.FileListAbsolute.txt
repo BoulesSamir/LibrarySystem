@@ -1,0 +1,15 @@
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\Bussinesslogic.deps.json
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\Bussinesslogic.dll
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\Bussinesslogic.pdb
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\BussinessObject.dll
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\DataAccess.dll
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\DataAccess.pdb
+F:\New folder\LibrarySystem\Bussinesslogic\bin\Debug\netstandard2.0\BussinessObject.pdb
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.csproj.AssemblyReference.cache
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.GeneratedMSBuildEditorConfig.editorconfig
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.AssemblyInfoInputs.cache
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.AssemblyInfo.cs
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.csproj.CoreCompileInputs.cache
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.csproj.CopyComplete
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.dll
+F:\New folder\LibrarySystem\Bussinesslogic\obj\Debug\netstandard2.0\Bussinesslogic.pdb

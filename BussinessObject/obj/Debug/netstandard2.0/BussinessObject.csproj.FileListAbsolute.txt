@@ -1,0 +1,10 @@
+F:\New folder\LibrarySystem\BussinessObject\bin\Debug\netstandard2.0\BussinessObject.deps.json
+F:\New folder\LibrarySystem\BussinessObject\bin\Debug\netstandard2.0\BussinessObject.dll
+F:\New folder\LibrarySystem\BussinessObject\bin\Debug\netstandard2.0\BussinessObject.pdb
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.csproj.AssemblyReference.cache
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.GeneratedMSBuildEditorConfig.editorconfig
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.AssemblyInfoInputs.cache
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.AssemblyInfo.cs
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.csproj.CoreCompileInputs.cache
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.dll
+F:\New folder\LibrarySystem\BussinessObject\obj\Debug\netstandard2.0\BussinessObject.pdb

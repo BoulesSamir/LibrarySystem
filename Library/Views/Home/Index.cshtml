@@ -1,0 +1,8 @@
+﻿@using BussinessObject;
+@model List<Book>
+@foreach (var item in Model)
+{
+    <p>@item.BookID</p>
+    <p>@item.ISBN</p>
+    <p>@item.Title</p>
+}
