@@ -15,40 +15,35 @@ namespace Bussinesslogic
         this.repository = new LibraryRepository(connectionString);
     }
 
-    public List<Book> SearchBooks(string searchTerm)
+    public List<Book> SearchBooks(string BookTitle , string BookAuthor, string ISBN)
     {
-        // Basic input validation
-        if (string.IsNullOrEmpty(searchTerm))
-        {
-            throw new ArgumentException("Search term cannot be empty.");
-        }
 
         // Call the repository method to search for books
-        return repository.SearchBooks(searchTerm);
+        return repository.SearchBooks(BookTitle, BookAuthor, ISBN);
     }
 
-    public bool BorrowBook(int userId, int bookId)
+    public Book BorrowBook( int bookId)
     {
         // Basic input validation
-        if (userId <= 0 || bookId <= 0)
+        if (bookId <= 0)
         {
             throw new ArgumentException("Invalid user ID or book ID.");
         }
 
         // Call the repository method to borrow a book
-        return repository.BorrowBook(userId, bookId);
+        return repository.BorrowBook(bookId);
     }
 
-    public bool ReturnBook(int borrowingId)
+    public Book ReturnBook(int BookId)
     {
         // Basic input validation
-        if (borrowingId <= 0)
+        if (BookId <= 0)
         {
             throw new ArgumentException("Invalid borrowing ID.");
         }
 
         // Call the repository method to return a book
-        return repository.ReturnBook(borrowingId);
+        return repository.ReturnBook(BookId);
     }
 }
 }

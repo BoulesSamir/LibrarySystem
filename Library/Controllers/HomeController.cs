@@ -1,5 +1,6 @@
 ﻿using Bussinesslogic;
 using BussinessObject;
+using Library.CustomFilter;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -9,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Library.Controllers
 {
+    [CustomExceptionHandlerFilter]
     public class HomeController : Controller
     {
         [NonAction]
@@ -16,25 +18,26 @@ namespace Library.Controllers
         {
             return ConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
         }
-        public ActionResult Index()
+        public ActionResult Index(string BookTitle="",string BookAuthor = "",string ISBN = "")
         {
+           
             var libraryService = new LibraryService(GetConnectionString());
-            List<Book> books =libraryService.SearchBooks("a");
+            List<Book> books =libraryService.SearchBooks(BookTitle,BookAuthor,ISBN);
             return View(books);
         }
-
-        public ActionResult About()
+        public ActionResult BorrowBook(int id)
         {
-            ViewBag.Message = "Your application description page.";
+            var libraryService = new LibraryService(GetConnectionString());
+            var book=libraryService.BorrowBook(bookId: id);
+            return PartialView("_ViewBook", book);
 
-            return View();
         }
-
-        public ActionResult Contact()
+        public ActionResult ReturnBook(int id)
         {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
+            var libraryService = new LibraryService(GetConnectionString());
+           var book= libraryService.ReturnBook(id);
+            return PartialView("_ViewBook",book);
         }
+       
     }
 }

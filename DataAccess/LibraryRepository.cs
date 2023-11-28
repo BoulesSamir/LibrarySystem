@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Net;
 using System.Text;
 
 namespace DataAccess
@@ -15,7 +16,7 @@ namespace DataAccess
         {
             this.connectionString = connectionString;
         }
-        public List<Book> SearchBooks(string searchTerm)
+        public List<Book> SearchBooks(string BookTitle, string BookAuthor, string ISBN)
         {
             List<Book> books = new List<Book>();
 
@@ -23,10 +24,12 @@ namespace DataAccess
             {
                 connection.Open();
 
-                string query = "SELECT * FROM Books WHERE Title LIKE @SearchTerm OR Author LIKE @SearchTerm OR ISBN LIKE @SearchTerm";
+                string query = "SELECT * FROM Books WHERE Title LIKE @Title and Author LIKE @Author and ISBN LIKE @ISBN";
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@SearchTerm", "%" + searchTerm + "%");
+                    command.Parameters.AddWithValue("@Title", "%" + BookTitle + "%");
+                    command.Parameters.AddWithValue("@Author", "%" + BookAuthor + "%");
+                    command.Parameters.AddWithValue("@ISBN", "%" + ISBN + "%");
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -49,76 +52,93 @@ namespace DataAccess
             return books;
         }
 
-        public bool BorrowBook(int userId, int bookId)
+        public Book BorrowBook( int bookId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                // Check if the book is available
-                string availabilityQuery = "SELECT Availability FROM Books WHERE BookID = @BookID";
-                using (SqlCommand availabilityCommand = new SqlCommand(availabilityQuery, connection))
+                var book = getBook(bookId, connection);
+                if (book != null && book.Availability == true)
                 {
-                    availabilityCommand.Parameters.AddWithValue("@BookID", bookId);
-
-                    object result = availabilityCommand.ExecuteScalar();
-                    if (result != null && Convert.ToBoolean(result))
-                    {
-                        // Book is available, proceed with borrowing
-                        string borrowQuery = "INSERT INTO Borrowings (UserID, BookID, BorrowDate) VALUES (@UserID, @BookID, @BorrowDate)";
-                        using (SqlCommand borrowCommand = new SqlCommand(borrowQuery, connection))
-                        {
-                            borrowCommand.Parameters.AddWithValue("@UserID", userId);
-                            borrowCommand.Parameters.AddWithValue("@BookID", bookId);
-                            borrowCommand.Parameters.AddWithValue("@BorrowDate", DateTime.Now);
-
-                            borrowCommand.ExecuteNonQuery();
-
-                            // Update book availability status
+          
                             string updateAvailabilityQuery = "UPDATE Books SET Availability = 0 WHERE BookID = @BookID";
                             using (SqlCommand updateAvailabilityCommand = new SqlCommand(updateAvailabilityQuery, connection))
                             {
                                 updateAvailabilityCommand.Parameters.AddWithValue("@BookID", bookId);
                                 updateAvailabilityCommand.ExecuteNonQuery();
                             }
-
-                            return true; // Borrowing successful
-                        }
+                        connection.Close();
+                    book.Availability = false;
+                        return book; // Borrowing successful
+                      //  }
                     }
                     else
                     {
-                        return false; // Book is not available
+                        connection.Close();
+                        return book; // Book is not available
                     }
-                }
             }
+            
         }
 
-        public bool ReturnBook(int borrowingId)
+        public Book ReturnBook(int bookId)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-
-                // Update return date for the borrowing
-                string returnQuery = "UPDATE Borrowings SET ReturnDate = @ReturnDate WHERE BorrowingID = @BorrowingID";
-                using (SqlCommand returnCommand = new SqlCommand(returnQuery, connection))
+                var book = getBook(bookId, connection);
+                if (book != null && book.Availability == false)
                 {
-                    returnCommand.Parameters.AddWithValue("@ReturnDate", DateTime.Now);
-                    returnCommand.Parameters.AddWithValue("@BorrowingID", borrowingId);
-
-                    returnCommand.ExecuteNonQuery();
-
-                    // Update book availability status
-                    string updateAvailabilityQuery = "UPDATE Books SET Availability = 1 WHERE BookID IN (SELECT BookID FROM Borrowings WHERE BorrowingID = @BorrowingID)";
+                    string updateAvailabilityQuery = "UPDATE Books SET Availability = 1 WHERE BookID = @BookID";
                     using (SqlCommand updateAvailabilityCommand = new SqlCommand(updateAvailabilityQuery, connection))
                     {
-                        updateAvailabilityCommand.Parameters.AddWithValue("@BorrowingID", borrowingId);
+                        updateAvailabilityCommand.Parameters.AddWithValue("@BookID", bookId);
                         updateAvailabilityCommand.ExecuteNonQuery();
+
                     }
 
-                    return true; // Return successful
+                    connection.Close();
+                    book.Availability = true;
+                    return book; // Return successful
+                }
+                else
+                {
+                    connection.Close();
+                    return book;
                 }
             }
         }
+    private Book getBook(int bookId,SqlConnection connection)
+        {
+            Book book=new Book();
+            string availabilityQuery = "SELECT * FROM Books WHERE BookID = @BookID";
+            using (SqlCommand command = new SqlCommand(availabilityQuery, connection))
+            {
+                command.Parameters.AddWithValue("@BookID", bookId);
+
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.HasRows)
+                    {
+                        while (reader.Read())
+                        {
+                            // Assuming you have columns like BookId, Title, Author in your Books table
+                            book.BookID = reader.GetInt32(reader.GetOrdinal("BookId"));
+                            book.Title = reader.GetString(reader.GetOrdinal("Title"));
+                            book.Author = reader.GetString(reader.GetOrdinal("Author"));
+                            book.ISBN = reader.GetString(reader.GetOrdinal("ISBN"));
+                            book.Availability = Convert.ToBoolean(reader["Availability"]);
+                            return book;
+                            
+                        }
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            return null;
+        }   
     }
 }

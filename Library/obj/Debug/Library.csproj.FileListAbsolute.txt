@@ -83,3 +83,4 @@ F:\New folder\LibrarySystem\Library\obj\Debug\Library.csproj.CoreCompileInputs.c
 F:\New folder\LibrarySystem\Library\obj\Debug\Library.csproj.CopyComplete
 F:\New folder\LibrarySystem\Library\obj\Debug\Library.dll
 F:\New folder\LibrarySystem\Library\obj\Debug\Library.pdb
+F:\New folder\LibrarySystem\Library\bin\System.Data.SqlClient.dll

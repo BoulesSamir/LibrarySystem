@@ -1,0 +1,14 @@
+﻿@using BussinessObject;
+@model Book
+<td>@Model.Title</td>
+<td>@Model.Author</td>
+<td>@Model.ISBN</td>
+<td>@Model.Availability</td>
+@if (Model.Availability)
+{
+    <td><button onclick="borrow(@Model.BookID)"  class="btn btn-danger"> borrow</button></td>
+}
+else
+{
+    <td><button onclick="ReturnBook(@Model.BookID)"  class="btn btn-danger"> Return</button></td>
+}
